@@ -1,0 +1,17 @@
+# Production environment override
+services:
+  php:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile
+      target: frankenphp_prod
+    environment:
+      APP_SECRET: ${APP_SECRET}
+
+  database:
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  messenger:
+    environment:
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
